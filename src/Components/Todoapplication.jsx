@@ -13,6 +13,7 @@ const Todoapplication = () => {
             setDate('')
         }
         //...Spread Operator:-  To Hold the previous Data or Old Data
+        // The trim() method in JavaScript is used to remove whitespace from both ends of a string.
 
     }
     return (
