@@ -1,13 +1,13 @@
 import { useState } from "react"
-const Background=()=>{
-    const[bgcolor,setBgcolor]=useState('')
+const Background = () => {
+    const [bgcolor, setBgcolor] = useState('')
 
-    const bgHandler=(event)=>{
+        const bgHandler = (event) => {
         setBgcolor(event.target.value)
-        
     }
-    return(
-        <div style={{height :'100vh', backgroundColor: bgcolor}}>
+    const textcolor=(bgcolor ==='black' ? 'white':'black')
+    return (
+        <div style={{ height: '100vh', backgroundColor: bgcolor }}>
             <select className="form-control w-25 mx-auto" onChange={bgHandler}>
                 <option value=''>Select Color</option>
                 <option value='purple'>Purple Mode</option>
