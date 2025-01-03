@@ -1,7 +1,6 @@
 import { useState } from "react"
 const Background = () => {
     const [bgcolor, setBgcolor] = useState('')
-
         const bgHandler = (event) => {
         setBgcolor(event.target.value)
     }

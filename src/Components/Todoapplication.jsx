@@ -51,6 +51,7 @@ const Todoapplication = () => {
                             <th>Name</th>
                             <th>Description</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -62,6 +63,10 @@ const Todoapplication = () => {
                                             <td>{todo.item}</td>
                                             <td>{todo.description}</td>
                                             <td>{todo.date}</td>
+                                            <td>
+                                             <button className="btn btn-">Edit</button>
+                                             <butto>Delete</butto>
+                                            </td>
                                         </tr>
                                     )
                                 })
