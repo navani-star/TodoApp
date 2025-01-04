@@ -4,17 +4,35 @@ const Todoapplication = () => {
     const [item, setItem] =useState('')
     const [description,setdescription] = useState('')
     const [date,setDate] = useState('')
-
+    const [edit,setEdit] =useState(null)
+   
     const dataHandler = () => {
         if (item.trim() && description.trim() && date.trim()){
-            settodos([...todos, { id: Date.now(), item, description, date }]);
+            if(edit!==null){
+                const updatedata=[...todos]
+                updatedata[edit]={item,description,date}
+                settodos(updatedata)
+                setEdit(null)
+            }
+            else{
+                settodos([...todos, { id: Date.now(), item, description, date }]);
+            }
             setItem('')
             setdescription('')
             setDate('')
         }
+        else{
+            alert('All Fields Are Required')
+        }
         //...Spread Operator:-  To Hold the previous Data or Old Data
         // The trim() method in JavaScript is used to remove whitespace from both ends of a string.
-
+    }
+    const editHandler=(index)=>{
+        const todo=todos[index]
+        setItem(todo.item)
+        setdescription(todo.description)
+        setDate(todo.date)
+        setEdit(index)
     }
     return (
         <div>
@@ -41,7 +59,13 @@ const Todoapplication = () => {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
-                <button className="btn btn-success mt-3 w-25" onClick={dataHandler}>Add Data</button>
+                <button className="btn btn-success mt-3 w-25" onClick={dataHandler}>
+                    {
+                        edit!==null ? 'Update Data':' Submit Data'
+                    }
+                   
+                    
+                </button>
             </div>
             <div className="w-75 mx-auto mt-5">
                 <table className="table border">
@@ -58,14 +82,14 @@ const Todoapplication = () => {
                             {
                                 todos.map((todo,index)=>{
                                     return(
-                                        <tr key={todo.id}>
+                                        <tr key={index}>
                                             <td>{index+1}</td>
                                             <td>{todo.item}</td>
                                             <td>{todo.description}</td>
                                             <td>{todo.date}</td>
                                             <td>
-                                             <button className="btn btn-">Edit</button>
-                                             <butto>Delete</butto>
+                                                <button className="btn btn-danger me-1" onClick={()=>editHandler(index)}>Edit</button>
+                                                <button className="btn btn-warning">Delete</button>
                                             </td>
                                         </tr>
                                     )
