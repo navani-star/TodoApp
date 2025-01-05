@@ -42,12 +42,10 @@ const Apptodo = () => {
         setTodos(deletedata)
     }
     const Completedata=(index)=>{
-        const updatedata=[...todos]
-        updatedata[index].Completed=!
-        updatedata[index].Completed
-        setTodos(updatedata)
-       
-
+        const Updatedata=[...todos]
+        Updatedata[index].Completed=!
+        Updatedata[index].Completed
+        setTodos(Updatedata)
     }
     return (
         <div>

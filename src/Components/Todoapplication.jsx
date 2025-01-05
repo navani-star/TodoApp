@@ -39,11 +39,16 @@ const Todoapplication = () => {
         deletedata.splice(index,1)
         settodos(deletedata)
     }
-    
+    const Completedata=(index)=>{
+        const updatedata=[...todos]
+        updatedata[index].Completed=!
+        updatedata[index].Completed
+        settodos(updatedata)
+    }
     return (
         <div>
             <h1>Todo Application:-</h1>
-            <div className="bg-dark w-75 mx-auto p-3">
+            <div className="bg-dark w-75 mx-auto p-3 rounded-3">
 
                 <input type="text"
                     placeholder="Enter A List Name"
@@ -89,13 +94,18 @@ const Todoapplication = () => {
                                 todos.map((todo,index)=>{
                                     return(
                                         <tr key={index}>
-                                            <td>{index+1}</td>
-                                            <td>{todo.item}</td>
-                                            <td>{todo.description}</td>
-                                            <td>{todo.date}</td>
+                                            <td style={{textDecoration:todo.Completed?'line-through':'none'}}>{index+1}</td>
+                                            <td style={{textDecoration:todo.Completed?'line-through':'none'}}>{todo.item}</td>
+                                            <td style={{textDecoration:todo.Completed?'line-through':'none'}}>{todo.description}</td>
+                                            <td style={{textDecoration:todo.Completed?'line-through':'none'}}>{todo.date}</td>
                                             <td>
-                                                <button className="btn btn-danger me-1" onClick={()=>editHandler(index)}>Edit</button>
+                                                <button className="btn btn-danger me-2" onClick={()=>editHandler(index)}>Edit</button>
                                                 <button className="btn btn-warning" onClick={()=>deletehandler(index)}>Delete</button>
+                                                <button className="btn btn-primary ms-2" onClick={()=>Completedata(index)}>
+                                                    {
+                                                        todo.Completed ? 'Undo':'Completed'
+                                                    }
+                                                </button>
                                                 
                                             </td>
                                         </tr>
