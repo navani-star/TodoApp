@@ -11,11 +11,11 @@ const Todoapplication = () => {
             if(edit!==null){
                 const updatedata=[...todos]
                 updatedata[edit]={item,description,date}
-                settodos(updatedata)
-                setEdit(null)
+                settodos(updatedata) //when click on edit button then settodos update the data and holds.. 
+                setEdit(null) //Reset Mode(Black Fiels After add the data)
             }
             else{
-                settodos([...todos, { id: Date.now(), item, description, date }]);
+                settodos([...todos, { id: Date.now(), item, description, date }]); //Normal Data Add
             }
             setItem('')
             setdescription('')
@@ -28,12 +28,18 @@ const Todoapplication = () => {
         // The trim() method in JavaScript is used to remove whitespace from both ends of a string.
     }
     const editHandler=(index)=>{
-        const todo=todos[index]
+        const todo=todos[index] //target on the basis of index
         setItem(todo.item)
         setdescription(todo.description)
         setDate(todo.date)
         setEdit(index)
     }
+    const deletehandler=(index)=>{
+        const deletedata=[...todos]
+        deletedata.splice(index,1)
+        settodos(deletedata)
+    }
+    
     return (
         <div>
             <h1>Todo Application:-</h1>
@@ -89,7 +95,8 @@ const Todoapplication = () => {
                                             <td>{todo.date}</td>
                                             <td>
                                                 <button className="btn btn-danger me-1" onClick={()=>editHandler(index)}>Edit</button>
-                                                <button className="btn btn-warning">Delete</button>
+                                                <button className="btn btn-warning" onClick={()=>deletehandler(index)}>Delete</button>
+                                                
                                             </td>
                                         </tr>
                                     )
